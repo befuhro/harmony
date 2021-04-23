@@ -3,6 +3,7 @@ package rpc
 import (
 	"context"
 	"fmt"
+	"log"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -470,6 +471,8 @@ func (s *PublicBlockchainService) GetShardingStructure(
 	ctx context.Context,
 ) ([]StructuredResponse, error) {
 	// Get header and number of shards.
+	log.Println("GetShardingStructure")
+
 	epoch := s.hmy.CurrentBlock().Epoch()
 	numShard := shard.Schedule.InstanceForEpoch(epoch).NumShards()
 
